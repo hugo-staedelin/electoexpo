@@ -19,17 +19,17 @@ public class TypeController {
     @Autowired
     TypeRepository typeRepository;
 
-    @GetMapping("/objects/types/v1/")
+    @GetMapping("/v1/objects/types/")
     public Iterable<Type> getAllTypes() {
         return typeRepository.findAll();
     }
 
-    @GetMapping("/objects/types/v1/{id}")
+    @GetMapping("/v1/objects/types/{id}")
     public Optional<Type> getTypeById(@PathVariable Integer id) {
         return typeRepository.findById(id);
     }
 
-    @PostMapping("/objects/types/v1/")
+    @PostMapping("/v1/objects/types/")
     public ResponseEntity<Type> addType(@RequestBody TypeDTO typeDTO) {
         Type type = typeRepository.save(new Type(typeDTO));
         if (type == null) {
@@ -37,7 +37,7 @@ public class TypeController {
         } return new ResponseEntity<Type>(type, HttpStatus.CREATED);
     }
 
-    @PatchMapping("/objects/types/v1/{id}")
+    @PatchMapping("/v1/objects/types/{id}")
     public ResponseEntity<Type> editType(@PathVariable Integer id, @RequestBody TypeDTO typeDTO) throws IOException {
         Type obj = typeRepository.findById(id).orElseThrow(IOException::new);
         obj.setLabel(typeDTO.getLabel());
@@ -45,13 +45,13 @@ public class TypeController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @DeleteMapping("/objects/types/v1/")
+    @DeleteMapping("/v1/objects/types/")
     public ResponseEntity deleteAllTypes() {
         typeRepository.deleteAll();
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @DeleteMapping("/objects/types/v1/{id}")
+    @DeleteMapping("/v1/objects/types/{id}")
     public ResponseEntity deleteType(@PathVariable Integer id) {
         typeRepository.deleteById(id);
         return ResponseEntity.status(HttpStatus.OK).build();
