@@ -1,6 +1,7 @@
 package fr.hstaedelin.electoexpo.models.job;
 
 import fr.hstaedelin.electoexpo.models.dto.ObjectDTO;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -20,8 +21,10 @@ public class Object {
     @Column()
     private Integer period;
     @Column()
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBorrowing;
     @Column()
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDateOfBorrowing;
 
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
