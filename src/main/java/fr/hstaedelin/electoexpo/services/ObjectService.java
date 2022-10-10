@@ -61,7 +61,7 @@ public class ObjectService {
     }
 
     public void removeById(Integer id) {
-        Optional<ObjectDTO> type = this.getObjectByID(id);
-        type.ifPresent(objectDTO -> this.objectRepository.delete(this.objectMapper.map(objectDTO)));
+        Optional<ObjectDTO> object = this.getObjectByID(id);
+        object.ifPresent(objectDTO -> this.objectRepository.delete(this.objectMapper.map(objectDTO)));
     }
 }

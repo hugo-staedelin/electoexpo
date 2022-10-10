@@ -30,16 +30,16 @@ public class MuseumService {
     }
 
     public Museum addMuseum(MuseumDTO museumDTO) {
-        Museum object = this.museumMapper.map(museumDTO);
-        this.museumRepository.save(object);
-        return object;
+        Museum museum = this.museumMapper.map(museumDTO);
+        this.museumRepository.save(museum);
+        return museum;
     }
 
     public Museum update(Integer id, MuseumDTO objectDTO) {
-        Optional<MuseumDTO> object = this.getMuseumByID(id);
-        if (object.isPresent()) {
-            this.museumRepository.save(this.update(objectDTO, this.museumMapper.map(object.get())));
-            return this.museumMapper.map(object.get());
+        Optional<MuseumDTO> museum = this.getMuseumByID(id);
+        if (museum.isPresent()) {
+            this.museumRepository.save(this.update(objectDTO, this.museumMapper.map(museum.get())));
+            return this.museumMapper.map(museum.get());
         } else return null;
     }
 
@@ -53,7 +53,7 @@ public class MuseumService {
     }
 
     public void removeById(Integer id) {
-        Optional<MuseumDTO> type = this.getMuseumByID(id);
-        type.ifPresent(objectDTO -> this.museumRepository.delete(this.museumMapper.map(objectDTO)));
+        Optional<MuseumDTO> museum = this.getMuseumByID(id);
+        museum.ifPresent(objectDTO -> this.museumRepository.delete(this.museumMapper.map(objectDTO)));
     }
 }

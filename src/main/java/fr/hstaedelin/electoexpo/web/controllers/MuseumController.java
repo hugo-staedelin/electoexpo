@@ -39,10 +39,10 @@ public class MuseumController {
 
     @PostMapping("/v2/museums/")
     public ResponseEntity<MuseumDTO> createMuseum(@RequestBody MuseumDTO objectDTO) {
-        Museum object = this.museumService.addMuseum(objectDTO);
-        if (object == null) {
+        Museum musem = this.museumService.addMuseum(objectDTO);
+        if (musem == null) {
             return status(HttpStatus.NOT_IMPLEMENTED).build();
-        } return ResponseEntity.status(HttpStatus.CREATED).body(this.museumMapper.map(object));
+        } return ResponseEntity.status(HttpStatus.CREATED).body(this.museumMapper.map(musem));
     }
 
     @PatchMapping("/v2/museums/{id}")
