@@ -29,6 +29,7 @@ public class TypeController {
     }
 
     @GetMapping("/v1/objects/types/")
+    @Deprecated(since = "v2")
     /**
      * @deprecated
      * This method is deprecated since the rc of the new API version.
@@ -49,6 +50,7 @@ public class TypeController {
      * <p> Use {@link TypeController#findTypeById(Integer)} instead.
      */
     @GetMapping("/v1/objects/types/{id}")
+    @Deprecated(since = "v2")
     public Optional<Type> getTypeById(@PathVariable Integer id) {
         return typeRepository.findById(id);
     }
@@ -64,6 +66,7 @@ public class TypeController {
      * <p> Use {@link TypeController#addNewType(TypeDTO)} instead.
      */
     @PostMapping("/v1/objects/types/")
+    @Deprecated(since = "v2")
     public ResponseEntity<Type> addType(@RequestBody TypeDTO typeDTO) {
         Type type = typeRepository.save(new Type(typeDTO));
         if (type == null) {
@@ -85,6 +88,7 @@ public class TypeController {
      * <p> Use {@link TypeController#updateType(Integer, TypeDTO)}} instead.
      */
     @PatchMapping("/v1/objects/types/{id}")
+    @Deprecated(since = "v2")
     public ResponseEntity<Type> editType(@PathVariable Integer id, @RequestBody TypeDTO typeDTO) throws IOException {
         Type obj = typeRepository.findById(id).orElseThrow(IOException::new);
         obj.setLabel(typeDTO.getLabel());
@@ -103,6 +107,7 @@ public class TypeController {
      * <p> Use {@link TypeController#removeAllTypes()} instead.
      */
     @DeleteMapping("/v1/objects/types/")
+    @Deprecated(since = "v2")
     public ResponseEntity deleteAllTypes() {
         typeRepository.deleteAll();
         return ResponseEntity.status(HttpStatus.OK).build();
@@ -120,6 +125,7 @@ public class TypeController {
      * <p> Use {@link TypeController#removeTypeById(Integer)} instead.
      */
     @DeleteMapping("/v1/objects/types/{id}")
+    @Deprecated(since = "v2")
     public ResponseEntity deleteType(@PathVariable Integer id) {
         typeRepository.deleteById(id);
         return ResponseEntity.status(HttpStatus.OK).build();
