@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sun.istack.NotNull;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 public class ObjectDTO {
@@ -30,7 +31,7 @@ public class ObjectDTO {
     private LocalDate endDateOfBorrowing;
 
     @JsonProperty("types")
-    private Set<TypeDTO> types;
+    private List<TypeDTO> types;
 
     public Integer getId() {
         return id;
@@ -80,11 +81,11 @@ public class ObjectDTO {
         this.endDateOfBorrowing = endDateOfBorrowing;
     }
 
-    public Set<TypeDTO> getTypes() {
+    public List<TypeDTO> getTypes() {
         return types;
     }
 
-    public void setTypes(Set<TypeDTO> types) {
+    public void setTypes(List<TypeDTO> types) {
         this.types = types;
     }
 }

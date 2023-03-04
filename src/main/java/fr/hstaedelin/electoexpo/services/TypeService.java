@@ -22,7 +22,7 @@ public class TypeService {
     }
 
     public Iterable<TypeDTO> getTypes() {
-        return typeMapper.typeList(typeRepository.findAll());
+        return typeMapper.typeDtoList(typeRepository.findAll());
     }
 
     public Optional<TypeDTO> getTypeByID(Integer id) {

@@ -7,6 +7,7 @@ import fr.hstaedelin.electoexpo.models.job.Type;
 import fr.hstaedelin.electoexpo.repositories.ObjectRepository;
 import fr.hstaedelin.electoexpo.services.ObjectService;
 import fr.hstaedelin.electoexpo.services.mappers.ObjectMapper;
+import fr.hstaedelin.electoexpo.services.mappers.TypeMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,11 +27,13 @@ public class ObjectController {
     ObjectRepository objectRepository;
 
     ObjectMapper objectMapper;
+    TypeMapper typeMapper;
     ObjectService objectService;
 
     @Autowired
-    public ObjectController(ObjectMapper objectMapper, ObjectService objectService) {
+    public ObjectController(ObjectMapper objectMapper, TypeMapper typeMapper, ObjectService objectService) {
         this.objectMapper = objectMapper;
+        this.typeMapper = typeMapper;
         this.objectService = objectService;
     }
 

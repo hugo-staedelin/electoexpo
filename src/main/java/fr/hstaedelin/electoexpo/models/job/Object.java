@@ -1,10 +1,13 @@
 package fr.hstaedelin.electoexpo.models.job;
 
 import fr.hstaedelin.electoexpo.models.dto.ObjectDTO;
+import fr.hstaedelin.electoexpo.services.mappers.TypeMapper;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -28,11 +31,11 @@ public class Object {
     private LocalDate endDateOfBorrowing;
 
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private Set<Type> type;
+    private List<Type> type = new ArrayList<Type>();
 
     public Object() {}
 
-    public Object(Integer id, String name, String description, int period, LocalDate dateOfBorrowing, LocalDate endDateOfBorrowing, Set<Type> type) {
+    public Object(Integer id, String name, String description, int period, LocalDate dateOfBorrowing, LocalDate endDateOfBorrowing, List<Type> type) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -42,12 +45,13 @@ public class Object {
         this.type = type;
     }
 
-    public Object(ObjectDTO objectDTO) {
+    public Object(ObjectDTO objectDTO, TypeMapper mapper) {
         this.name = objectDTO.getName();
         this.description = objectDTO.getDescription();
         this.period = objectDTO.getPeriod();
         this.dateOfBorrowing = objectDTO.getDateOfBorrowing();
         this.endDateOfBorrowing = objectDTO.getEndDateOfBorrowing();
+        this.type = (List<Type>) mapper.typeList(objectDTO.getTypes());
     }
 
     public Integer getId() {
@@ -98,11 +102,11 @@ public class Object {
         this.endDateOfBorrowing = endDateOfBorrowing;
     }
 
-    public Set<Type> getType() {
+    public List<Type> getType() {
         return type;
     }
 
-    public void setType(Set<Type> type) {
+    public void setType(List<Type> type) {
         this.type = type;
     }
 }
